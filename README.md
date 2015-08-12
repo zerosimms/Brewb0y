@@ -1,4 +1,4 @@
-# brewboy
+# Brewb0y
 Arduino powered dual thermometer with 90min countdown timer to help with the production of homebrew beer!
 
 Components
