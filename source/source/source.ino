@@ -22,7 +22,7 @@ OneWire oneWire(ONE_WIRE_BUS);
 //Pass our oneWire reference to Dallas Temperature. 
 DallasTemperature sensors(&oneWire);
 
-//Ever thermometer has a unique address, this can be found with addressFinder.ino
+//Each thermometer has a unique address, this can be found with addressFinder.ino
 DeviceAddress thermometer1 = { 0x28, 0xFF, 0xE3, 0x86, 0x66, 0x14, 0x03, 0x4D };
 DeviceAddress thermometer2 = { 0x28, 0xFF, 0xD7, 0x76, 0x66, 0x14, 0x03, 0xA7 };
 
@@ -35,7 +35,7 @@ int seconds = 0;
 boolean startCountDown = false;
 
 //Prints all the data to the LCD screen.
-void printScreen(){
+void printScreen() {
   display.setCursor(0,0);
   display.println("---BREW-B0Y---");
   display.setCursor(0,10);
@@ -69,20 +69,20 @@ void setup(void) {
   display.setContrast(45);
   display.setTextSize(1);
   display.setTextColor(BLACK);
-  
+
   sensors.begin();
   sensors.setResolution(thermometer1, 10);
   sensors.setResolution(thermometer2, 10);
 }
 
 //Does what it says.
-void getTemperatures(){
+void getTemperatures() {
   temperature1 = sensors.getTempC(thermometer1);
   temperature2 = sensors.getTempC(thermometer2);
 }
 
 //Check to see what state the timer is at.
-void checkTimer(){
+void checkTimer() {
   if (timer > 0 && startCountDown){
     if (seconds >= 1){
       seconds = seconds -1; 
@@ -91,7 +91,6 @@ void checkTimer(){
       timer = timer -1;
       seconds = 60;
     }
-
     if (timer <= 0){
       timer = 0;
       seconds = 0;   
@@ -100,7 +99,7 @@ void checkTimer(){
   }
 }
 
-void checkIfTimerStarted(){
+void checkIfTimerStarted() {
   if (buttonState == HIGH) {
     startCountDown = true; 
   }
@@ -114,35 +113,4 @@ void loop(void) {
   checkIfTimerStarted();
   checkTimer();
 } 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
